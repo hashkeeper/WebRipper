@@ -1,2 +1,3 @@
-features to add:
-come back and make sure css scraper is grabbing all css files, nut chest the style.css file
+there are different attempts in different folders.
+I'm saving 00, because who knows maybe python offers 
+a more interesting tool pallet.
