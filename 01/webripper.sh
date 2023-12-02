@@ -7,7 +7,7 @@ source ./src/urlcleaner.sh
 
 # Create master directory, refresh the process
 # if something's in there
-buildProj () {
+checkDir () {
   cd ./scrapes
   for a in *; do
     if [ $cursite == $a ]; then
@@ -32,9 +32,18 @@ buildProj () {
   cd ../../
 }
 
-buildProj
+checkDir
+cd $curpath
+echo $url > rip.txt
 
-source ./src/scrape.js
+buildProj () {
+  for line in $(cat rip.txt)
+  do
+    node ./../../src/scrape.js $url
+  done
+}
+
+buildProj
 
 echo "exiting main script..."
 exit
