@@ -1,6 +1,6 @@
-import * as cheerio from 'cheerio';
-import * as axios from 'axios';
-import * as fs from 'fs';
+const axios = require('axios');
+const cheerio = require('cheerio');
+const fs = require('fs');
 
 const cursite = process.argv[2];
 let rawData = '';
@@ -16,7 +16,8 @@ axios.get(cursite)
     // Use Cheerio to select and extract the data from the website
     const data = $('a').text();
     // Write the data to a file
-    fs.writeFileSync('output.txt', data);
+    fs.writeFileSync('ahref.txt', data);
+    return response.text();
   })
   .catch((error) => {
     console.log(error);

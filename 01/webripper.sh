@@ -39,7 +39,8 @@ echo $url > rip.txt
 buildProj () {
   for line in $(cat rip.txt)
   do
-    node ./../../src/scrape.js $url
+    node ./../../src/fetch.js $url
+    # node ./../../src/parse.js $url
   done
 }
 
