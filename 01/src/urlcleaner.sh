@@ -24,5 +24,9 @@ if [ ${cursite::4} == "www." ]; then
   cursite=${cursite:4}
 fi
 
+if [ ${url::8} != "https://" ] || [ ${url: -1} != "/" ]; then
+  url="http://${url}/"
+fi
+
 echo "URL cleaned, exiting..."
 return
