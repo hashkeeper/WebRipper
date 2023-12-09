@@ -11,7 +11,7 @@ fetch(indexURL)
     return response.text();
   })
   .then(data => {
-    fs.writeFileSync('indexdump.txt', data); // place data dump into
+    fs.writeFileSync('index.html', data); // place data dump into
   })
   .catch(error => {
     console.error(error); // Log any errors to the console

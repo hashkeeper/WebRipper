@@ -2,6 +2,7 @@
 
 # The user-entered URL we will be scraping
 url=${1}
+
 cursite=$url
 
 # Setting up the directory lattice-work
@@ -24,9 +25,12 @@ if [ ${cursite::4} == "www." ]; then
   cursite=${cursite:4}
 fi
 
-if [ ${url::8} != "https://" ] || [ ${url: -1} != "/" ]; then
+if [ ${url::7} != "http://" ] || [ ${url: -1} != "/" ]; then
   url="http://${url}/"
 fi
+
+# echo $cursite
+# echo $url
 
 echo "URL cleaned, exiting..."
 return
