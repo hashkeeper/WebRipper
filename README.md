@@ -6,6 +6,6 @@
 chmod +x ./webripper.sh
 ``
   
-``  
+``
 ./webripper <URL>
 ``
