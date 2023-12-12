@@ -1,6 +1,6 @@
 # WebRipper
 ## hands-on webscraping Bash toolchain.
-results of toolchain found in scrapes folder.
+./webripper <URL>  results found in scrape folder.
   
 00 was written using Python, at which point I realized I should be using javascript I want to be doing any webscraping.
   
