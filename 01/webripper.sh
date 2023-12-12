@@ -3,6 +3,12 @@
 # The user-entered URL we will be scraping
 url=${1}
 
+if [ ${url::7} != "http://" ] || [ ${url::8} != "https://" ]; then
+  url="http://${url}/"
+  url=$(node ./src/fetchurl.js $url)
+fi
+echo $url
+
 source ./src/urlcleaner.sh $url
 
 # Create master directory, refresh the process
@@ -11,12 +17,12 @@ checkDir () {
   cd ./scrapes
   for a in *; do
     if [ $cursite == $a ]; then
-      read -p "Project exists. Overwrite? (Y/n): " ans00
-      if [ $ans00 == "y" ] || [ $ans00 == "Y" ]; then
+      read -p "Project exists. Overwrite? (Y/n): " ans01
+      if [ $ans01 == "y" ] || [ $ans01 == "Y" ]; then
         rm -r $cursite
         mkdir $cursite
         break
-      elif [ $ans00 == "n" ] || [ $ans00 == "N" ]; then
+      elif [ $ans01 == "n" ] || [ $ans01 == "N" ]; then
         exit
       else
         buildProj;
@@ -37,18 +43,18 @@ cd $curpath
 echo $url > rip.txt
 
 buildProj () {
-  for line in $(cat rip.txt) 
-  do
-    if [ $line == $url ]; then
-      node ./../../src/fetch.js $url
-      node ./../../src/parseahref.js
-    else
-      source ./../../src/urlcleaner.sh $line 
-      read -p "Scrape following link as well? $line (Y/n):" ans01
-      if [ $ans01 == "Y" ] || [ $ans01 == "y" ]; then
-        echo $ans01s
-      fi
+  node ./../../src/fetch.js $url
+  node ./../../src/parseahref.js $url
+  for line in $(cat rip.txt); do
+    source ./../../src/urlcleaner.sh $line 
+    read -p "Scrape following link as well? $line (Y/n):" ans02
+    if [ $ans02 == "Y" ] || [ $ans02 == "y" ]; then
+      echo $ans01
+    elif [ $ans02 == "N" ] || [ $ans02 == "n" ]; then
+      continue
     fi
+    echo $line
+    echo $cursite
   done
 }
 

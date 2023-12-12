@@ -1,6 +1,7 @@
 const cheerio = require('cheerio');
 const fs = require('fs');
 
+const url = process.argv[2];
 const indexFile = fs.readFileSync('./index.html');
 
 const $ = cheerio.load(indexFile, {
@@ -20,21 +21,24 @@ for(var i = 1; i < aList.length; i++) {
 
 
 for(var j = 0; j < hrefList.length; j++) {
-  // if (hrefList[j].charAt(0) == null) {
-  //   continue 
-  // } else {
-  let entryAsString = hrefList[j].toString();
-  fs.appendFile('rip.txt', entryAsString + '\n', (err) => {
-    if (err) throw err;
-    console.log(entryAsString + 'appended to rip.txt');
-  }
-  );
-  // };
+  if(hrefList[j] === '/'){
+    continue;
+  } else if (hrefList[j].startsWith(url)) {
+    let entryAsString = hrefList[j].toString();
+    fs.appendFile('rip.txt', entryAsString + '\n', (err) => {
+      if (err) throw err;
+      console.log('appended ' + entryAsString + ' to rip.txt');
+    }
+    );
+  } else {
+    console.log(hrefList[j]); 
+    console.log(url); 
+    continue;
+  }; 
 };
 
-// console.log('###parseahref.js complete###');
 // console.log(aList);
 // console.log(hrefList);
 // console.log(process.cwd());
-// console.log('#############################');
+console.log('parsed hrefs. exiting...');
 return;

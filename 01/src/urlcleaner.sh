@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # The user-entered URL we will be scraping
-url=${1}
-
-cursite=$url
+cururl=${1}
+cursite=$cururl
 
 # Setting up the directory lattice-work
 # Taking website URL, cleaning it up, creating a project directory
@@ -23,10 +22,6 @@ fi
 
 if [ ${cursite::4} == "www." ]; then
   cursite=${cursite:4}
-fi
-
-if [ ${url::7} != "http://" ] || [ ${url: -1} != "/" ]; then
-  url="http://${url}/"
 fi
 
 # echo $cursite
