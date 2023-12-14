@@ -23,6 +23,13 @@ for(var i = 1; i < aList.length; i++) {
 for(var j = 0; j < hrefList.length; j++) {
   if(hrefList[j] === '/'){
     continue;
+  } else if (!hrefList[j].startsWith(url) && url.length > 1) {
+    let entryAsString = url + hrefList[j].toString();
+    fs.appendFile('rip.txt', entryAsString + '\n', (err) => {
+      if (err) throw err;
+      console.log('appended ' + entryAsString + ' to rip.txt');
+    }
+    );
   } else if (hrefList[j].startsWith(url)) {
     let entryAsString = hrefList[j].toString();
     fs.appendFile('rip.txt', entryAsString + '\n', (err) => {
@@ -32,7 +39,6 @@ for(var j = 0; j < hrefList.length; j++) {
     );
   } else {
     console.log(hrefList[j]); 
-    console.log(url); 
     continue;
   }; 
 };

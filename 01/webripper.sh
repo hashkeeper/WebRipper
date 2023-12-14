@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Creating some globals we'll be using a lot based on the
 # The user-entered URL we will be scraping
 url=${1}
 
@@ -7,7 +8,6 @@ if [ ${url::7} != "http://" ] || [ ${url::8} != "https://" ]; then
   url="http://${url}/"
   url=$(node ./src/fetchurl.js $url)
 fi
-echo $url
 
 source ./src/urlcleaner.sh $url
 
@@ -35,29 +35,30 @@ checkDir () {
   done
   cd $cursite
   curpath=$(pwd)
-  cd ../../
+  cd $curpath
 }
 
-checkDir
-cd $curpath
-echo $url > rip.txt
-
 buildProj () {
-  node ./../../src/fetch.js $url
+  echo $url > rip.txt
+  node ./../../src/fetchdata.js $url
   node ./../../src/parseahref.js $url
   for line in $(cat rip.txt); do
     source ./../../src/urlcleaner.sh $line 
-    read -p "Scrape following link as well? $line (Y/n):" ans02
+    read -p "Scrub the following? $line (Y/n):" ans02
     if [ $ans02 == "Y" ] || [ $ans02 == "y" ]; then
+      mkdir $line 
+      cd ./$line
+      ls -la
+      node ./../../src/fetchdata.js $line
+      node ./../../src/parseahref.js $line
       echo $ans01
     elif [ $ans02 == "N" ] || [ $ans02 == "n" ]; then
       continue
     fi
-    echo $line
-    echo $cursite
   done
 }
 
+checkDir
 buildProj
 
 echo $url

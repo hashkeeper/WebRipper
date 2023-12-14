@@ -25,7 +25,7 @@ if [ ${cursite::4} == "www." ]; then
 fi
 
 # echo $cursite
-# echo $url
+# echo $cururl
 
 echo "URL cleaned, exiting..."
 return
