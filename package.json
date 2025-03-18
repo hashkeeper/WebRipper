@@ -1,0 +1,15 @@
+{
+  "name": "webripper",
+  "version": "1.0.0",
+  "description": "scrape the web",
+  "main": "webripper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Edward Cronin",
+  "license": "ISC",
+  "dependencies": {
+    "beautify": "^0.0.8",
+    "puppeteer": "^24.2.0"
+  }
+}
