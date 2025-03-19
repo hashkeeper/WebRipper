@@ -8,6 +8,6 @@ results found in scrape folder.
 ## Installation
 ```
 cd path/to/webripper
-node install
+node install webripper
 chmod +x ./webripper.sh
 ```
