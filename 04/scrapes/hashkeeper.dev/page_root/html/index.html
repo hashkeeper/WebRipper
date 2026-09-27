@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/default.css">
+        <style rel="stylesheet" id="selStyle">
+            body {
+                overflow-x: hidden;
+            }
+            
+            #bgcont {
+                display: flex;
+                flex-direction: column;
+                color: #d5ff96;
+                width: 100vw;
+                height: 100vh;
+                font-size: 18px;
+                justify-content: center;
+            }
+            
+            #bgtop {
+                width: 100%;
+                justify-self: center;
+                align-self: center;
+            }
+            
+            #bg {
+                background-size: 100% 100%;
+                border-style: hidden;
+                object-fit: contain;
+                width: 100%;
+            }
+            
+            #bgnav {
+                display: flex;
+                margin: 0px 0 0 25px;
+            }
+            
+            #leftcont, #rightcont, #randcont {
+                cursor: pointer;
+            }
+            
+            @keyframes borderbuzz {
+                0% {
+                    box-shadow: 0 0 0px #360450;
+                }
+            
+                50% {
+                    box-shadow: 0 0 7px #8656a0;
+                }
+            
+                100% {
+                    box-shadow: 0 0 0px #360450;
+                }
+              }
+            
+            @media (max-width:775px) {
+                nav[data-visible="true"] {
+                    transform: translateX(-60%);
+                }
+            
+                #bgcont, #bg {
+                    width: 100vw;
+                }
+            
+                #bg {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+            
+            @media (max-width:400px) {
+                nav {
+                    display: flex;
+                    flex-direction: column;
+                    top: 20%;
+                }
+            
+                nav[data-visible="true"] {
+                    width: 100%;
+                    transform: translateX(-40%);
+                }
+            
+                header #logo {
+                    width: 75px;
+                }
+            
+                #bg {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        </style>
+        <script src="js/navtoggle.js" defer=""></script>
+        <script src="js/pagepicker.js" defer=""></script>
+        <title>hashkeeper art &amp; tech</title>
+        <script id="selJs" defer="">
+            (function() {<br>    let bg =  document.querySelector('#bg');<br>    let leftbg = document.querySelector('#leftcont');<br>    let rightbg = document.querySelector('#rightcont');<br>    let randbg = document.querySelector('#randcont');<br><br>    let folD = "";<br>    let filelen = 6;<br>    let temp_count = 0;<br><br>    function widthCheck() {<br>        if (window.innerWidth > 775) {<br>            folD = "images0";<br>        } else if (window.innerWidth < 775) {<br>            folD = "images1";<br>        };<br>        bg.src = '/pagepicker/page0/' + folD + '/banner' + temp_count + '.JPEG' ;<br>    }<br><br>    function bgrand() {<br>        temp_count = Math.trunc(Math.random() * (filelen - 0) + 0); <br>        bg.src = "/pagepicker/page0/" + folD + "/banner" + temp_count + ".JPEG";<br>    }<br><br>    function countCheck() {<br>        if(temp_count < 0) {<br>            temp_count = filelen;<br>        } else if(temp_count > filelen) {<br>            temp_count = 0;<br>        }<br>    }<br><br>    function bgleft() {<br>        temp_count--;<br>        countCheck();<br>        bg.src = "/pagepicker/page0/" + folD + "/banner" + temp_count + ".JPEG"; <br>    }<br><br>    function bgright() {<br>        temp_count++;<br>        countCheck();<br>        bg.src = "/pagepicker/page0/" + folD + "/banner" + temp_count + ".JPEG"; <br>    }<br><br>    widthCheck();<br>    window.addEventListener('resize', widthCheck);<br><br>    randbg.addEventListener('click', bgrand);<br>    leftbg.addEventListener('click', bgleft);<br>    rightbg.addEventListener('click', bgright);<br>})();
+        </script>
+    </head>
+    
+    <body>
+        <header>
+            <img src="images/path4.png" aria-expanded="false" aria-controls="mlist"
+            id="logo">
+            <nav>
+                <ul data-visible="false" id="mlist">
+                    <li><a href="https://hashkeeper.dev">home</a>
+                    </li>
+                    <li><a href="https://github.com/hashkeeper">code</a>
+                    </li>
+                    <li><a href="https://store.hashkeeper.dev/">store</a>
+                    </li>
+                    <li><a href="https://blog.hashkeeper.dev/">blog</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <section id="conT"><span id="bgcont" class="flex-column">
+  <div id="bgtop">
+    <img id="bg" src="/pagepicker/page0/images0/banner0.JPEG">
+  </div>
+  <div id="bgnav" class="flex-row">
+    <span id="leftcont">&lt;=&nbsp;</span>
+ <span>&nbsp;</span>
+ <span id="randcont">&nbsp;+&nbsp;</span>
+ <span>&nbsp;</span>
+
+            <span
+            id="rightcont">&nbsp;=&gt;</span>
+                </div>
+                </span>
+        </section>
+        <footer>
+            <ul id="pageOptions">
+                <li id="pic00">[Default]</li>
+                <li id="pic01">[Web Dev.]</li>
+                <li id="pic02">[Fine Art]</li>
+                <li id="pic03">[Urb. Farm]</li>
+                <li id="pic04">[About Us]</li>
+            </ul>
+        </footer>
+    </body>
+
+</html>

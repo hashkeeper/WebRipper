@@ -1,0 +1,51 @@
+nav {
+    background-image: url('../images/chainrepeating.png');
+    background-repeat: repeat;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #360450;
+    width: 500px;
+    padding: 20px;
+    text-align: right;
+    position: fixed;
+    top: 30%;
+    left: 0px;
+    border-radius: 8px;
+    box-shadow: 0 0 0px #360450;
+    animation-name: borderbuzz;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+    transform: translateX(-125%);
+}
+
+nav[data-visible="true"] {
+    transform: translateX(-60%);
+    transition: transform 1.5s ease-in-out;
+}
+
+nav[data-visible="false"] {
+    transform: translateX(-125%);
+    transition: transform .5s ease-in-out;
+}
+
+a {
+    color: #ddff7e;
+}
+
+a:hover {
+    color: #614a6d;
+}
+
+header #logo {
+    background-size: cover;
+    border-style: none;
+    width: 90px;
+    height: 90px;
+    top: 0px;
+    left: 0px;
+}
+
+#mlist {
+    font-size: 28px;
+}

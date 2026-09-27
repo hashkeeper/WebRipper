@@ -1,5 +1,7 @@
 const cheerio = require('cheerio');
+const readline = require("readline");
 const fs = require('fs');
+
 
 const url = process.argv[2];
 const indexFile = fs.readFileSync('./index.html');
